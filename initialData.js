@@ -77,3 +77,9 @@ function openModal(taskId) {
 
   document.getElementById("taskModal").classList.remove("hidden");
 }
+
+// Close modal function
+function closeModal() {
+  document.getElementById("taskModal").classList.add("hidden");
+  currentTaskId = null;
+}
