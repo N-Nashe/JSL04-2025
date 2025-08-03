@@ -83,3 +83,22 @@ function closeModal() {
   document.getElementById("taskModal").classList.add("hidden");
   currentTaskId = null;
 }
+
+// Save changes function
+function saveTask() {
+  const title = document.getElementById("taskTitle").value.trim();
+  const description = document.getElementById("taskDescription").value.trim();
+  const status = document.getElementById("taskStatus").value;
+
+
+
+  const task = initialTasks.find(k => k.id === currentTaskId);
+  if (task) {
+    task.title = title;
+    task.description = description;
+    task.status = status;
+  }
+
+  updateTasks();
+  closeModal();
+}
