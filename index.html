@@ -1,93 +1,109 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;1,400&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="./styles.css" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./assets/favicon.svg"
-    />
-    <script defer src="./scripts.js"></script>
-    <title>Kanban Task Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+    </style>
   </head>
 
   <body>
-    <!-- Navigation Sidebar: Contains the logo, navigation links for boards, and theme toggle. -->
-    <nav class="side-bar" id="side-bar-div">
-      <div id="side-logo-div">
-        <img id="logo" src="./assets/logo-light.svg" alt="logo-light" />
-      </div>
-
-      <div class="boards-nav-links-div" id="boards-nav-links-div">
-        <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
-        <button class="board-btn">Launch Career</button>
-      </div>
-    </nav>
-
-    <!-- Main Layout: Header with board title, add task button, and main content area for task columns. -->
-    <div id="layout">
-      <header id="header" class="sticky-header">
-        <div class="header-name-div">
-          <img
-            src="./assets/favicon.svg"
-            alt="logo-mobile"
-            class="logo-mobile"
-          />
-          <h2 class="header-board-name" id="header-board-name">
-            Launch Career
-          </h2>
+    <div class="container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-content">
+          <div>
+            <img src="assets/logo-light.svg" class="logo-img" />
+          </div>
+          <h4>ALL BOARDS(1)</h4>
+          <button class="board-button">Launch Career</button>
         </div>
-      </header>
+      </nav>
 
-      <div class="container">
-        <main class="card-column-main">
-          <!-- Task Columns: Display tasks grouped by status (TODO, DOING, DONE). -->
-          <div class="column-div" data-status="todo">
-            <div id="todo-head-div" class="column-head-div">
-              <span class="dot" id="todo-dot"></span>
-              <h4 id="toDoText" class="columnHeader">TODO (4)</h4>
-            </div>
-            <!-- Tasks container for TODO -->
-            <div class="tasks-container">
-              <div class="task-div">Launch Epic Career 🚀</div>
-              <div class="task-div">Conquer React⚛️</div>
-              <div class="task-div">Understand Databases⚙️</div>
-              <div class="task-div">Crush Frameworks🖼️</div>
-            </div>
+      <!-- Main Layout -->
+      <div class="main">
+        <!-- Header -->
+        <header class="header">
+          <div class="header-content">
+            <h2>Launch Career</h2>
           </div>
-          <!-- DOING Column -->
-          <div class="column-div" data-status="doing">
-            <div id="doing-head-div" class="column-head-div">
-              <span class="dot" id="doing-dot"></span>
-              <h4 id="doingText" class="columnHeader">DOING (2)</h4>
+        </header>
+
+        <!-- Board Columns -->
+        <div class="board-container">
+          <section class="columns-section">
+            <!-- TODO Column -->
+            <div class="column" id="todo-column">
+              <div class="column-header">
+                <span class="todo-dot"></span>
+                <h4>TO DO (4)</h4>
+              </div>
+              <div class="tasks">
+                <span class="task">Launch Epic Career 🚀</span>
+                <span class="task">Conquer React ⚛️</span>
+                <span class="task">Understand Databases ⚙️</span>
+                <span class="task">Crush Frameworks 🖼️</span>
+              </div>
             </div>
-            <!-- Tasks container for DOING -->
-            <div class="tasks-container">
-              <div class="task-div">Master JavaScript 💛</div>
-              <div class="task-div">Never Give Up 🏆</div>
+
+            <!-- DOING Column -->
+            <div class="column" id="doing-column">
+              <div class="column-header">
+                <span class="doing-dot"></span>
+                <h4>DOING (2)</h4>
+              </div>
+              <div class="tasks">
+                <span class="task">Master JavaScript 💛</span>
+                <span class="task">Never Give Up 🏆</span>
+              </div>
             </div>
-          </div>
-          <!-- DONE Column -->
-          <div class="column-div" data-status="done">
-            <div id="done-head-div" class="column-head-div">
-              <span class="dot" id="done-dot"></span>
-              <h4 id="doneText" class="columnHeader">DONE (2)</h4>
+
+            <!-- DONE Column -->
+            <div class="column" id="done-column">
+              <div class="column-header">
+                <span class="done-dot"></span>
+                <h4>DONE (2)</h4>
+              </div>
+              <div class="tasks">
+                <span class="task">Explore ES6 Features 🚀</span>
+                <span class="task">Have fun 🥳 🛠️</span>
+              </div>
             </div>
-            <!-- Tasks container for DONE -->
-            <div class="tasks-container">
-              <div class="task-div">Explore ES6 Features 🚀</div>
-              <div class="task-div">Have fun 🥳</div>
-            </div>
-          </div>
-        </main>
+          </section>
+        </div>
       </div>
     </div>
+
+    <div id="taskModal" class="modal-overlay hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Task</h3>
+          <span class="close-button" onclick="closeModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+          <label for="taskTitle">Title</label>
+          <input type="text" id="taskTitle" />
+
+          <label for="taskDescription">Description</label>
+          <textarea id="taskDescription" rows="4"></textarea>
+
+          <label for="taskStatus">Status</label>
+          <select id="taskStatus">
+            <option value="todo">To Do</option>
+            <option value="doing">Doing</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button class="save-btn" onclick="saveTask()">Save Changes</button>
+          <button class="delete-btn" onclick="deleteTask()">Delete Task</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="initialData.js"></script>
   </body>
 </html>
