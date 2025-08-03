@@ -50,3 +50,19 @@ function updateTasks() {
     doing: document.querySelector('#doing-column .tasks'),
     done: document.querySelector('#done-column .tasks'),
   };
+
+  // Clear all columns
+  Object.values(columns).forEach(col => col.innerHTML = '');
+
+  // Add each task to the correct column
+  initialTasks.forEach(task => {
+    const taskCreate = document.createElement('span');
+    taskCreate.classList.add('task');
+    taskCreate.textContent = task.title;
+    taskCreate.title = task.description;
+
+    // When clicked, open a modal for this task
+    taskCreate.addEventListener('click', () => openModal(task.id));
+    columns[task.status].appendChild(taskCreate);
+  });
+}
