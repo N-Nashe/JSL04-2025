@@ -40,3 +40,13 @@ const initialTasks = [
     status: "done",
   },
 ];
+
+let currentTaskId = null;
+
+// Updates the board with the tasks
+function updateTasks() {
+  const columns = {
+    todo: document.querySelector('#todo-column .tasks'),
+    doing: document.querySelector('#doing-column .tasks'),
+    done: document.querySelector('#done-column .tasks'),
+  };
