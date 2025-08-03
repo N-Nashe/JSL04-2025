@@ -66,3 +66,14 @@ function updateTasks() {
     columns[task.status].appendChild(taskCreate);
   });
 }
+// Open modal function
+function openModal(taskId) {
+  currentTaskId = taskId;
+  const task = initialTasks.find(k => k.id === taskId);
+
+  document.getElementById("taskTitle").value = task.title;
+  document.getElementById("taskDescription").value = task.description;
+  document.getElementById("taskStatus").value = task.status;
+
+  document.getElementById("taskModal").classList.remove("hidden");
+}
