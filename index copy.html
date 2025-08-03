@@ -14,7 +14,7 @@
       sizes="32x32"
       href="./assets/favicon.svg"
     />
-    <script defer src="./scripts.js"></script>
+    <script type="module" src="./initialData.js"></script>
     <title>Kanban Task Management</title>
   </head>
 
@@ -49,18 +49,13 @@
       <div class="container">
         <main class="card-column-main">
           <!-- Task Columns: Display tasks grouped by status (TODO, DOING, DONE). -->
+          <!-- TODO Column -->
           <div class="column-div" data-status="todo">
             <div id="todo-head-div" class="column-head-div">
               <span class="dot" id="todo-dot"></span>
               <h4 id="toDoText" class="columnHeader">TODO (4)</h4>
             </div>
-            <!-- Tasks container for TODO -->
-            <div class="tasks-container">
-              <div class="task-div">Launch Epic Career 🚀</div>
-              <div class="task-div">Conquer React⚛️</div>
-              <div class="task-div">Understand Databases⚙️</div>
-              <div class="task-div">Crush Frameworks🖼️</div>
-            </div>
+            <div class="tasks" id="todo-tasks"></div>
           </div>
           <!-- DOING Column -->
           <div class="column-div" data-status="doing">
@@ -68,11 +63,7 @@
               <span class="dot" id="doing-dot"></span>
               <h4 id="doingText" class="columnHeader">DOING (2)</h4>
             </div>
-            <!-- Tasks container for DOING -->
-            <div class="tasks-container">
-              <div class="task-div">Master JavaScript 💛</div>
-              <div class="task-div">Never Give Up 🏆</div>
-            </div>
+            <div class="tasks" id="doing-tasks"></div>
           </div>
           <!-- DONE Column -->
           <div class="column-div" data-status="done">
@@ -80,13 +71,30 @@
               <span class="dot" id="done-dot"></span>
               <h4 id="doneText" class="columnHeader">DONE (2)</h4>
             </div>
-            <!-- Tasks container for DONE -->
-            <div class="tasks-container">
-              <div class="task-div">Explore ES6 Features 🚀</div>
-              <div class="task-div">Have fun 🥳</div>
-            </div>
+            <div class="tasks" id="done-tasks"></div>
           </div>
         </main>
+      </div>
+    </div>
+
+    <!-- Modal for editing tasks -->
+    <div id="taskModal" class="modal hidden">
+      <div class="modal-content">
+        <button id="closeModalBtn" class="close-btn">&times;</button>
+        <label>Title:
+          <input id="taskTitle" type="text" />
+        </label>
+        <label>Description:
+          <textarea id="taskDescription"></textarea>
+        </label>
+        <label>Status:
+          <select id="taskStatus">
+            <option value="todo">To Do</option>
+            <option value="doing">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+        </label>
+        <button id="saveTaskBtn">Save</button>
       </div>
     </div>
   </body>
